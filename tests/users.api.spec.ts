@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { getAPIContext } from '../utils/apiContext';
+import { validateSchema } from '../utils/schemaValidator';
+
 
 test('GET /users returns valid data', async () => {
   const apiContext = await getAPIContext();
@@ -14,6 +16,10 @@ test('GET /users returns valid data', async () => {
   // Validate structure
   expect(Array.isArray(users)).toBe(true);
   expect(users.length).toBeGreaterThan(0);
+
+    // Validate against schema
+  validateSchema('user.schema.json', users);
+
 
   // Check a few fields in the first user
   const firstUser = users[0];
