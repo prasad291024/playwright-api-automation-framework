@@ -91,7 +91,7 @@ test('GET /users returns valid data', async () => {
 
 ## 🧪 Status Badge
 
-```![GitHub Actions](https://user-images.githubusercontent.com/3797062/65786081-ce0cdb00-e190-11e9-9430-f89d1c4a063e.png)
+```<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" width="24" /> ![Playwright API Tests](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/playwright-api.yml/badge.svg)
 ![Playwright API Tests](https://github.com/prasad291024/playwright-api-automation-framework/actions/workflows/playwright-api.yml/badge.svg)
 ```
 
