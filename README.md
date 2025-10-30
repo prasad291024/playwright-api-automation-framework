@@ -89,6 +89,14 @@ test('GET /users returns valid data', async () => {
 
 ---
 
+## 🧪 Status Badge
+
+```![GitHub Actions](https://user-images.githubusercontent.com/3797062/65786081-ce0cdb00-e190-11e9-9430-f89d1c4a063e.png)
+![Playwright API Tests](https://github.com/prasad291024/playwright-api-automation-framework/actions/workflows/playwright-api.yml/badge.svg)
+```
+
+---
+
 ## 📄 License
 
 MIT License
