@@ -7,6 +7,38 @@ test('GET /users returns valid data', async () => {
   const apiContext = await getAPIContext();
   const response = await apiContext.get('/users');
 
+ 
+  // negative test for invalid user ID
+  test('GET /users/:id with invalid ID returns 404', async () => {
+  const apiContext = await getAPIContext();
+  const response = await apiContext.get('/users/99999'); // Assuming this ID doesn't exist
+
+  expect(response.status()).toBe(404); // jsonplaceholder returns 404 for invalid user
+});
+
+// negative test for invalid endpoint or missing endpoint 
+test('GET /invalid-endpoint returns 404', async () => {
+  const apiContext = await getAPIContext();
+  const response = await apiContext.get('/invalid-endpoint');
+
+  expect(response.status()).toBe(404);
+});
+
+
+// negative test for POST /users with missing fields or invalid paylod for POST request
+test('POST /users with missing fields returns 400', async () => {
+  const apiContext = await getAPIContext();
+  const response = await apiContext.post('/users', {
+    data: {
+      // Missing required fields like name or email
+    },
+  });
+
+  expect(response.status()).toBe(400); // Depends on API behavior
+});
+
+
+
   // Basic status code check
   expect(response.status()).toBe(200);
 

@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:dev": "TEST_ENV=dev npx playwright test",
+  "test:staging": "TEST_ENV=staging npx playwright test",
+  "test:prod": "TEST_ENV=prod npx playwright test"
   },
   "keywords": [],
   "author": "",
@@ -23,4 +26,5 @@
     "ajv": "^8.17.1",
     "playwright": "^1.56.1"
   }
+ 
 }
