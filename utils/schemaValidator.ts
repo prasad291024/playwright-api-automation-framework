@@ -3,12 +3,16 @@ import fs from 'fs';
 import path from 'path';
 
 const ajv = new Ajv({ allErrors: true, strict: false });
+const schemaCache: Record<string, ValidateFunction> = {};
 
 export function validateSchema(schemaFileName: string, responseData: any): void {
-  const schemaPath = path.join(__dirname, '..', 'schemas', schemaFileName);
-  const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf-8'));
+  if (!schemaCache[schemaFileName]) {
+    const schemaPath = path.join(__dirname, '..', 'schemas', schemaFileName);
+    const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf-8'));
+    schemaCache[schemaFileName] = ajv.compile(schema);
+  }
 
-  const validate: ValidateFunction = ajv.compile(schema);
+  const validate = schemaCache[schemaFileName];
   const valid = validate(responseData);
 
   if (!valid) {
