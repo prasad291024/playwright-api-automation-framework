@@ -73,4 +73,39 @@ for (const user of users) {
 }
 
 
+test('POST /users with invalid data types returns 400', async () => {
+  const apiContext = await getAPIContext();
+  const response = await apiContext.post('/users', {
+    data: {
+      name: 123, // should be string
+      email: true, // should be string
+    },
+  });
 
+  expect(response.status()).toBe(400);
+});
+
+test('POST /users with extra fields returns 400', async () => {
+  const apiContext = await getAPIContext();
+  const response = await apiContext.post('/users', {
+    data: {
+      name: 'Charlie',
+      email: 'charlie@example.com',
+      role: 'admin', // not allowed by schema
+    },
+  });
+
+  expect(response.status()).toBe(400);
+});
+
+test('POST /users with invalid email format returns 400', async () => {
+  const apiContext = await getAPIContext();
+  const response = await apiContext.post('/users', {
+    data: {
+      name: 'Dana',
+      email: 'not-an-email',
+    },
+  });
+
+  expect(response.status()).toBe(400);
+});
