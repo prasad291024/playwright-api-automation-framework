@@ -4,7 +4,7 @@ export default defineConfig({
   testDir: './tests',
   timeout: 30000,
   retries: 0,
-  reporter: [['html', { open: 'never' }]], // or 'on' to auto-open
+ reporter: [['html', { outputFolder: 'playwright-report', open: 'on-failure' }]], // or 'on' to auto-open
   use: {
     baseURL: 'http://localhost', // fallback, overridden by apiContext
   },

@@ -10,6 +10,9 @@ test('GET /users returns valid data', async () => {
   const response = await apiContext.get('/users');
   const userList = await response.json();
   validateSchema('user.schema.json', userList);
+  console.log('Status:', response.status());
+  console.log('Body:', await response.text());
+
 
       // Basic status code check
   expect(response.status()).toBe(200);
