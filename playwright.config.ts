@@ -7,6 +7,7 @@ export default defineConfig({
  reporter: [['html', { outputFolder: 'playwright-report', open: 'on-failure' }]], // or 'on' to auto-open
   use: {
     baseURL: 'http://localhost', // fallback, overridden by apiContext
+    trace: 'on-first-retry', // or 'on', 'off', 'retain-on-failure'
   },
 
 });
