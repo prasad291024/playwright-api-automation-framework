@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "test:dev": "TEST_ENV=dev npx playwright test",
-    "test:staging": "TEST_ENV=staging npx playwright test",
-    "test:prod": "TEST_ENV=prod npx playwright test"
+    "test": "npx playwright test",
+    "test:dev": "cross-env TEST_ENV=dev npx playwright test",
+    "test:staging": "cross-env TEST_ENV=staging npx playwright test",
+    "test:prod": "cross-env TEST_ENV=prod npx playwright test"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +25,7 @@
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.9.2",
     "ajv": "^8.17.1",
+    "cross-env": "^7.0.3",
     "playwright": "^1.56.1"
   }
 }
