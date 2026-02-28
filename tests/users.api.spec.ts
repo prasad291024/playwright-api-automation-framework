@@ -50,8 +50,8 @@ test('GET /invalid-endpoint returns 404', async () => {
 
 
 
-// negative test for POST /users with missing fields or invalid paylod for POST request
-test('POST /users with missing fields returns 400', async () => {
+// JSONPlaceholder accepts most payloads and returns 201 for POST /users.
+test('POST /users with missing fields returns 201 in JSONPlaceholder', async () => {
   const apiContext = await getAPIContext();
   const response = await apiContext.post('/users', {
     data: {
@@ -59,7 +59,7 @@ test('POST /users with missing fields returns 400', async () => {
     },
   });
 
-  expect(response.status()).toBe(400); // Depends on API behavior
+  expect(response.status()).toBe(201);
 });
 
 
@@ -76,7 +76,7 @@ for (const user of users) {
 }
 
 
-test('POST /users with invalid data types returns 400', async () => {
+test('POST /users with invalid data types returns 201 in JSONPlaceholder', async () => {
   const apiContext = await getAPIContext();
   const response = await apiContext.post('/users', {
     data: {
@@ -85,10 +85,10 @@ test('POST /users with invalid data types returns 400', async () => {
     },
   });
 
-  expect(response.status()).toBe(400);
+  expect(response.status()).toBe(201);
 });
 
-test('POST /users with extra fields returns 400', async () => {
+test('POST /users with extra fields returns 201 in JSONPlaceholder', async () => {
   const apiContext = await getAPIContext();
   const response = await apiContext.post('/users', {
     data: {
@@ -98,10 +98,10 @@ test('POST /users with extra fields returns 400', async () => {
     },
   });
 
-  expect(response.status()).toBe(400);
+  expect(response.status()).toBe(201);
 });
 
-test('POST /users with invalid email format returns 400', async () => {
+test('POST /users with invalid email format returns 201 in JSONPlaceholder', async () => {
   const apiContext = await getAPIContext();
   const response = await apiContext.post('/users', {
     data: {
@@ -110,5 +110,5 @@ test('POST /users with invalid email format returns 400', async () => {
     },
   });
 
-  expect(response.status()).toBe(400);
+  expect(response.status()).toBe(201);
 });
