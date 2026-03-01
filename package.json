@@ -7,7 +7,11 @@
     "test": "npx playwright test",
     "test:dev": "cross-env TEST_ENV=dev npx playwright test",
     "test:staging": "cross-env TEST_ENV=staging npx playwright test",
-    "test:prod": "cross-env TEST_ENV=prod npx playwright test"
+    "test:prod": "cross-env TEST_ENV=prod npx playwright test",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"**/*.{ts,js,json,md,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{ts,js,json,md,yml,yaml}\""
   },
   "keywords": [],
   "author": "",
@@ -24,8 +28,13 @@
   "devDependencies": {
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.9.2",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
     "ajv": "^8.17.1",
     "cross-env": "^7.0.3",
-    "playwright": "^1.56.1"
+    "eslint": "^8.57.1",
+    "playwright": "^1.56.1",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3"
   }
 }
