@@ -3,7 +3,7 @@ export function generateUserData() {
   return {
     name: faker.person.fullName(),
     email: faker.internet.email(),
-    username: faker.internet.userName(),
+    username: faker.internet.username(),
     phone: faker.phone.number(),
     website: faker.internet.url(),
     title: faker.lorem.sentence(),
