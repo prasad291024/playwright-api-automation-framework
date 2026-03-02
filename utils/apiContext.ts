@@ -1,6 +1,5 @@
 import { request } from '@playwright/test';
 import { currentConfig } from '../config/env';
-import { BASE_URL } from './env.config';
 
 
 export async function getAPIContext() {
