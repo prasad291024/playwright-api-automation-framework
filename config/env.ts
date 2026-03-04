@@ -1,8 +1,17 @@
-type Environment = 'dev' | 'staging' | 'prod';
+const ENVIRONMENTS = ['dev', 'staging', 'prod'] as const;
+export type Environment = (typeof ENVIRONMENTS)[number];
 
-const ENV: Environment = process.env.TEST_ENV as Environment || 'dev';
+const rawEnv = process.env.TEST_ENV || 'dev';
+const isEnvironment = (value: string): value is Environment =>
+  (ENVIRONMENTS as readonly string[]).includes(value);
 
-const config = {
+if (!isEnvironment(rawEnv)) {
+  throw new Error(
+    `Unsupported TEST_ENV="${rawEnv}". Expected one of: ${ENVIRONMENTS.join(', ')}`
+  );
+}
+
+const config: Record<Environment, { baseURL: string; token: string }> = {
   dev: {
     baseURL: 'https://jsonplaceholder.typicode.com',
     token: '', // Add if needed
@@ -17,4 +26,5 @@ const config = {
   },
 };
 
-export const currentConfig = config[ENV];
+export const currentConfig = config[rawEnv];
+export const currentEnv = rawEnv;
