@@ -1,108 +1,91 @@
-# 🎯 Playwright API Automation Framework
+﻿# Playwright API Automation Framework
 
-This is a modular and scalable API testing framework built using [Playwright](https://playwright.dev/).
+Modular API testing framework built on Playwright Test with TypeScript and JSON schema validation.
 
----
-
-## 📦 Tech Stack
-
-- [Playwright Test Runner](https://playwright.dev/docs/test-api-testing)
+## Tech Stack
+- Playwright Test Runner (API testing)
 - TypeScript
-- AJV (Another JSON Validator)
+- AJV (JSON schema validation)
 - Node.js
 
----
-
-## 📁 Folder Structure
-
+## Folder Structure
 ```
-playwright-api-automation-framework/
-│
-├── tests/                   # API test cases
-│   ├── users.api.spec.ts    # Example: GET /users
-│   └── auth.api.spec.ts     # Example: POST /login
-│
-├── schemas/                 # JSON schemas for validation
-│   └── user.schema.json
-│
-├── utils/                   # Reusable helpers
-│   └── schemaValidator.ts   # AJV-based validator
-│
-├── apiContext.ts            # Shared request context
-│
-├── config/                  # Environment configs
-│   └── env.ts               # Base URLs, tokens, etc.
-│
-├── data/                    # Test payloads (optional)
-│   └── userPayloads.ts
-│
-├── playwright.config.ts     # Playwright test runner config
-├── package.json             # Dependencies and scripts
-└── README.md
+API_Automation_Framework/
+|-- .github/
+|   |-- workflows/
+|       |-- playwright-api.yml
+|-- config/
+|   |-- env.ts
+|-- data/
+|   |-- users.json
+|-- docs/
+|   |-- planning/
+|-- schemas/
+|   |-- user.schema.json
+|-- tests/
+|   |-- users.api.spec.ts
+|-- utils/
+|   |-- apiContext.ts
+|   |-- logger.ts
+|   |-- schemaValidator.ts
+|   |-- testDataGenerator.ts
+|-- playwright.config.ts
+|-- package.json
+|-- README.md
 ```
 
----
-
-## 🚀 Getting Started
-
-### 1. Clone the repo
-
-```bash
-git clone https://github.com/your-username/playwright-api-automation-framework
+## Getting Started
+### 1. Clone
+```
+git clone https://github.com/prasad291024/playwright-api-automation-framework.git
 cd playwright-api-automation-framework
 ```
 
-### 2. Install dependencies
-
-```bash
+### 2. Install
+```
 npm install
 npx playwright install
 ```
 
-### 3. Run tests
-
-```bash
-npx playwright test
+### 3. Run Tests
+```
+npm test
 ```
 
----
+## Scripts
+- `npm test`: run all Playwright API tests
+- `npm run test:dev`: run tests with `TEST_ENV=dev`
+- `npm run test:staging`: run tests with `TEST_ENV=staging`
+- `npm run test:prod`: run tests with `TEST_ENV=prod`
+- `npm run lint`: lint TypeScript files
+- `npm run typecheck`: TypeScript typecheck
+- `npm run format`: format supported files
+- `npm run format:check`: verify formatting
 
-## ✅ Features
-
-- Modular API test structure  
-- Shared request context using `request.newContext()`  
-- JSON schema validation with AJV  
-- Environment config support  
-- Easy to extend and integrate with CI/CD  
-
----
-
-## 🧪 Sample Test
-
-```typescript
-test('GET /users returns valid data', async () => {
-  const apiContext = await getAPIContext();
-  const response = await apiContext.get('/users');
-  expect(response.status()).toBe(200);
-});
+## Environment Configuration
+`config/env.ts` is the single source of truth.
+- Supported environments: `dev`, `staging`, `prod`
+- Example:
+```
+TEST_ENV=staging npm test
 ```
 
----
+## Notes
+- The default `dev` base URL is JSONPlaceholder (`https://jsonplaceholder.typicode.com`).
+- JSONPlaceholder accepts most POST payloads and returns `201` even for invalid data. Tests are written accordingly.
 
-## 🧪 Status Badge
+## CI
+The GitHub Actions workflow runs:
+1. `npm ci`
+2. `npm run lint`
+3. `npm run typecheck`
+4. `npx playwright test`
 
-```<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" width="24" /> ![Playwright API Tests](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/playwright-api.yml/badge.svg)
+## Status Badge
 ![Playwright API Tests](https://github.com/prasad291024/playwright-api-automation-framework/actions/workflows/playwright-api.yml/badge.svg)
-```
 
----
-
-## 📄 License
-
+## License
 MIT License
 
----
-
-## 🙌 Author
-
-**Prasad** — building clean, scalable test automation frameworks with Playwright.
+## Author
+Prasad
