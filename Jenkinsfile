@@ -10,7 +10,7 @@ pipeline {
 
   environment {
     TEST_ENV = 'dev'
-    SLACK_CHANNEL = ''
+    SLACK_CHANNEL = '#api-automation-framework'
   }
 
   triggers {
